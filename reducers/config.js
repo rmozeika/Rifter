@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
-import * as types from '../constants/ActionTypes'
-
+import { ActionTypes } from '../actions';
 const setConfig = (state = {}, action) => {
   switch (action.type) {
-    case types.setConfig:
+    case ActionTypes.setConfig:
       return {
           config: action.config,
           ...state
@@ -15,7 +14,7 @@ const setConfig = (state = {}, action) => {
 export const byName = (state = [], action = {}) => {
   switch (action.type) {
     // check this!
-    case types.setConfig:
+    case ActionTypes.setConfig:
       return action.config
     default:
       return state

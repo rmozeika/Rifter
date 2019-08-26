@@ -1,5 +1,6 @@
-import * as types from '../constants/types';
+import * as types from './types';
 
+export const ActionTypes = types;
 export const setConfig = config => ({
   type: types.setConfig,
   config

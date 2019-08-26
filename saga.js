@@ -1,25 +1,25 @@
 /* global fetch */
 
-import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects'
+import { all, call, delay, put, take, takeLatest, actionChannel } from 'redux-saga/effects'
 import es6promise from 'es6-promise'
 import 'isomorphic-unfetch'
 
-import { types, getConfig, } from './actions'
+import * as Actions from './actions';
 import { setConfig } from './src/constants/ActionTypes';
-
+const { ActionTypes } = Actions;
 es6promise.polyfill()
 
 function * initConfigSaga () {
-  yield take(types.initConfig)
+  debugger;
+  // yield take(types.initConfig)
   yield  data = call(loadDataSaga)
-  yield put = put(setConfig(data));
+  yield put = put(Actions.setConfig);
   // yield put(setConfigSuccess(config));
   // while (true) {
   //   yield put(tickClock(false))
   //   yield delay(1000)
   // }
 }
-console.log(getConfig)
 function * loadDataSaga () {
   try {
     const res = yield fetch('https://jsonplaceholder.typicode.com/users')
@@ -32,8 +32,8 @@ function * loadDataSaga () {
 
 function * rootSaga () {
   yield all([
-    call(runClockSaga),
-    takeLatest(Actions.fetch, loadDataSaga)
+    takeLatest(ActionTypes.loadData, loadDataSaga),
+    takeLatest(ActionTypes.initConfig, initConfigSaga)
   ])
 }
 

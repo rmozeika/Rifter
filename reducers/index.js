@@ -1,8 +1,6 @@
 import config, * as fromConfig from './config'
 import { combineReducers } from 'redux'
-import types from './types';
 
-export const types = types;
 export const initialState = {
     config: {}
 };
