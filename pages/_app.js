@@ -5,7 +5,6 @@ import withRedux from 'next-redux-wrapper'
 import withReduxSaga from 'next-redux-saga'
 
 import createStore from '../store'
-
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
     let pageProps = {}
@@ -27,4 +26,4 @@ class MyApp extends App {
   }
 }
 
-export default connect()(Index)
+export default withRedux(createStore)(withReduxSaga(MyApp))

@@ -10,7 +10,7 @@ class Index extends React.Component {
   static async getInitialProps (props) {
     const { store, isServer } = props.ctx
     // store.dispatch(tickClock(isServer))
-
+    
     if (!store.getState().config) {
       store.dispatch(initConfig())
     }
