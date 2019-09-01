@@ -8,14 +8,19 @@ import Page from '../components/page'
 
 class Index extends React.Component {
   static async getInitialProps (props) {
-    const { store, isServer } = props.ctx
+    const { store, isServer, req } = props.ctx
+    const { api } = req;
     // store.dispatch(tickClock(isServer))
-    
-    if (!store.getState().config) {
-      store.dispatch(initConfig())
+    if (isServer) {
+        const user = await api.repositories.users.findByUsername('darkness94')
+        return { isServer }
+      // return { isServer };
     }
+    // if (!store.getState().config) {
+    //   store.dispatch(initConfig())
+    // }
 
-    return { isServer }
+    // return { isServer }
   }
 
   componentDidMount () {

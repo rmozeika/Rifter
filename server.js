@@ -9,14 +9,40 @@ const rp2 = require('RP2/api');
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler();
-rp2.init(() => {
-    app.prepare().then(() => {
-        createServer((req, res, next) => {
-            rp2.repositories.users.findByUsername('darkness94', (err, user) => {
-                console.log(user);
-                req.user = user;
-                handle(req, res, parsed)
-            });
+async function test() {
+  await rp2.init({});
+  prepare(rp2);
+};
+//test();
+
+function prepare(api) {
+  app.prepare().then(() => {
+    createServer((req, res) => {
+      // Be sure to pass `true` as the second argument to `url.parse`.
+      // This tells it to parse the query portion of the URL.
+      const parsedUrl = parse(req.url, true)
+      const { pathname, query } = parsedUrl
+      // rp2.repositories.users.findByUsername('darkness94', (err, user) => {
+      //   console.log(user);
+      //   req.user = user;
+      req.api = api;
+      handle(req, res, parsedUrl)
+    // });
+      // if (pathname === '/a') {
+      //   app.render(req, res, '/b', query)
+      // } else if (pathname === '/b') {
+      //   app.render(req, res, '/a', query)
+      // } else {
+      //   handle(req, res, parsedUrl)
+      // }
+    }).listen(3000, err => {
+      if (err) throw err
+      console.log('> Ready on http://localhost:3000')
+    })
+  })
+}
+test();
+    
            //  handle(req, res, parsed)
           // Be sure to pass `true` as the second argument to `url.parse`.
           // This tells it to parse the query portion of the URL.
@@ -30,10 +56,5 @@ rp2.init(() => {
           // } else {
           //   handle(req, res, parsedUrl)
           // }
-        }).listen(3000, err => {
-          if (err) throw err
-          console.log('> Ready on http://localhost:3000')
-        })
-      })
-})
+        
 
