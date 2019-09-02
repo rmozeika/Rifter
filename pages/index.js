@@ -13,7 +13,7 @@ class Index extends React.Component {
     // store.dispatch(tickClock(isServer))
     if (isServer) {
         const user = await api.repositories.users.findByUsername('darkness94')
-        return { isServer }
+        return { user, isServer }
       // return { isServer };
     }
     // if (!store.getState().config) {
@@ -28,7 +28,7 @@ class Index extends React.Component {
   }
 
   render () {
-    return <Page title='Index Page' linkTo='/other' NavigateTo='Other Page' />
+    return <Page user={this.props.user} title='Index Page' linkTo='/other' NavigateTo='Other Page' />
   }
 }
 

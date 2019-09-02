@@ -4,8 +4,8 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
-const rp2 = require('RP2/api');
-
+// const rp2API = require('RP2/api');
+const rp2 = require('RP2/app')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler();
@@ -41,7 +41,30 @@ function prepare(api) {
     })
   })
 }
-test();
+async function withExpress() {
+  app.prepare().then(() => {
+    const server = rp2;
+    server.get('/', (req, res) => {
+      const parsedUrl = parse(req.url, true)
+      const { pathname, query } = parsedUrl
+      req.api = server.api;
+
+      handle(req, res, parsedUrl)
+      // const actualPage = '/index'
+      // const queryParams = {} //{ id: req.params.id } 
+      // app.render(req, res, actualPage, queryParams)
+    });
+
+      createServer(rp2).listen(3000, err =>{
+      if (err) {
+        console.log(err)
+      }
+      console.log('> Ready on http://localhost:3000')
+    })
+
+  })
+}
+withExpress();
     
            //  handle(req, res, parsed)
           // Be sure to pass `true` as the second argument to `url.parse`.
