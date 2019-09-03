@@ -5,7 +5,9 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
 // const rp2API = require('RP2/api');
-const rp2 = require('RP2/app')
+const rp2 = require('rp2/app');
+const secured = require('rp2/middleware/secured');
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler();
@@ -44,7 +46,7 @@ function prepare(api) {
 async function withExpress() {
   app.prepare().then(() => {
     const server = rp2;
-    server.get('/', (req, res) => {
+    server.get('/', secured(), (req, res) => {
       const parsedUrl = parse(req.url, true)
       const { pathname, query } = parsedUrl
       req.api = server.api;

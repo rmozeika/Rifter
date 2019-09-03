@@ -9,7 +9,8 @@ function Page ({
   linkTo,
   NavigateTo,
   config,
-  title
+  title,
+  user
 }) {
   return (
     <div>
