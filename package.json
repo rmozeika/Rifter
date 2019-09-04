@@ -9,8 +9,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "rp2": "~0.0.1",
+    "@babel/plugin-proposal-do-expressions": "^7.5.0",
     "@zeit/next-css": "^1.0.1",
+    "babel": "^6.23.0",
     "es6-promise": "4.1.1",
     "isomorphic-unfetch": "2.0.0",
     "next": "latest",
@@ -18,9 +19,15 @@
     "next-redux-wrapper": "2.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-native-elements": "^1.1.0",
+    "react-native-web": "^0.11.7",
     "react-redux": "5.0.7",
     "redux": "4.0.1",
     "redux-devtools-extension": "^2.13.8",
-    "redux-saga": "1.0.1"
+    "redux-saga": "1.0.1",
+    "rp2": "~0.0.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.7"
   }
 }

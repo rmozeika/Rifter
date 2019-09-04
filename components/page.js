@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { connect } from 'react-redux'
-
+import { StyleSheet, Text, View } from 'react-native'
+import { Button } from 'react-native-elements'
 
 function Page ({
   error,
@@ -15,7 +16,10 @@ function Page ({
   return (
     <div>
       <h1>{title}</h1>
-      
+      <Text accessibilityRole='header'>
+        React Native for Web & Next.js
+      </Text>
+      <Button title="hey!"></Button>
     </div>
   )
 }
