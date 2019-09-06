@@ -46,7 +46,8 @@ function prepare(api) {
 async function withExpress() {
   app.prepare().then(() => {
     const server = rp2;
-    server.get('/', secured(), (req, res) => {
+    // server.get('/', secured(), (req, res) => {
+    server.get('/', (req, res) => {
       const parsedUrl = parse(req.url, true)
       const { pathname, query } = parsedUrl
       req.api = server.api;

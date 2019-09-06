@@ -10,7 +10,7 @@ class Index extends React.Component {
   static async getInitialProps (props) {
     const { store, isServer, req } = props.ctx
     const { api } = req;
-    const { user } = req;
+    const { user = {} } = req;
     // store.dispatch(tickClock(isServer))
     // if (isServer) {
     //     const user = await api.repositories.users.findByUsername('darkness94')
