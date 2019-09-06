@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NODE_OPTIONS=\"--inspect\" next dev",
-    "sdev": "node --inspect server.js",
+    "dev": "NODE_OPTIONS=\"--inspect\" NODE_ENV='development' next dev",
+    "sdev": "NODE_ENV='development' node --inspect server.js",
     "build": "next build",
     "start": "next start"
   },
@@ -12,8 +12,11 @@
     "@babel/plugin-proposal-do-expressions": "^7.5.0",
     "@zeit/next-css": "^1.0.1",
     "babel": "^6.23.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-preset-react-app": "^9.0.1",
     "es6-promise": "4.1.1",
     "isomorphic-unfetch": "2.0.0",
+    "metro-react-native-babel-preset": "^0.56.0",
     "next": "latest",
     "next-redux-saga": "4.0.0",
     "next-redux-wrapper": "2.0.0",
@@ -29,6 +32,8 @@
     "rp2": "~0.0.1"
   },
   "devDependencies": {
+    "babel-plugin-react-native-web": "^0.11.7",
+    "babel-preset-react-native": "^4.0.1",
     "webpack-cli": "^3.3.7"
   }
 }
