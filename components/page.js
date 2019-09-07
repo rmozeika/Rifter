@@ -19,6 +19,7 @@ function Page ({
       <Text accessibilityRole='header'>
         React Native for Web & Next.js
       </Text>
+      {/* <Button title={"hello"}></Button> */}
     </div>
   )
 }

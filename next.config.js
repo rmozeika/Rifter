@@ -22,12 +22,16 @@ module.exports = {
           test: /\.(js|jsx|mjs)$/,
           include: [
             path.resolve(__dirname, 'node_modules/react-native-elements'),
-            path.resolve(__dirname, 'node_modules/react-native-vector-icons')
+            path.resolve(__dirname, 'node_modules/react-native-vector-icons'),
+            path.resolve(__dirname, 'node_modules/react-native-ratings')
+
           ],
           loader: require.resolve('babel-loader'),
               
               options: {
-                presets: ['react-native'],
+                presets: ["module:metro-react-native-babel-preset"],
+                // presets: ['react-native'],
+
                 // Re-write paths to import only the modules needed by the app
                 plugins: ['react-native-web'],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -53,6 +57,23 @@ module.exports = {
           // ]
         }
       )
+      config.module.rules.push(
+        {
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+          loader: require.resolve('url-loader'),
+          options: {
+            limit: 10000,
+            name: 'static/media/[name].[hash:8].[ext]',
+          },
+        }
+      )
+      // config.module.rules.push(
+      //   {
+      //     test: /.js*$/,
+      //     loader
+
+      //   }
+      // )
       return config
     }
 }  
